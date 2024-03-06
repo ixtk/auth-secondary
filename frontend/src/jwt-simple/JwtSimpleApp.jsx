@@ -21,7 +21,6 @@ const ProtectedRoute = ({ children }) => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    console.log(authState.initialLoading, authState.user)
     if (!authState.initialLoading && !authState.user) {
       navigate("/login")
     }

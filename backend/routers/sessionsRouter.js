@@ -30,6 +30,7 @@ export const protectRoute = async (req, res, next) => {
     return res.status(401).json({ message: "Unauthorized" })
   }
 
+  // ამ user ატრიბუტს გამოვიყენებთ რიგით შემდეგ middleware/response-ებში
   const user = await User.findById(req.session.userId).select("-password")
   req.user = user
 

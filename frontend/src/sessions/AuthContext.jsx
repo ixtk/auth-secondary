@@ -1,5 +1,6 @@
 import { axiosInstance, axiosInterceptorsInstance } from "./axiosInstance.js"
 import { createContext, useState, useEffect } from "react"
+import axios from "axios"
 
 export const AuthContext = createContext(null)
 
@@ -13,22 +14,24 @@ export const AuthContextProvider = ({ children }) => {
     const controller = new AbortController()
 
     const checkStatus = async () => {
+      // სატესტო დაყოვნებისთვის
       // await axiosInstance.get("https://httpbin.org/delay/1")
 
       try {
         const response = await axiosInstance.get("/user/auth", {
           signal: controller.signal
         })
-        setAuthState((prevAuthState) => ({
-          ...prevAuthState,
+        setAuthState({
           user: response.data.user,
           initialLoading: false
-        }))
+        })
       } catch (error) {
-        setAuthState((prevAuthState) => ({
-          ...prevAuthState,
-          initialLoading: false
-        }))
+        if (!axios.isCancel(error)) {
+          setAuthState((authState) => ({
+            ...authState,
+            initialLoading: false
+          }))
+        }
       }
     }
 

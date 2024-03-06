@@ -19,7 +19,7 @@ export const RootLayout = () => {
   return (
     <div className="max-w-5xl mx-auto px-3">
       <header className="border-b py-5 mb-6 flex justify-between">
-        <h1 className="text-lg font-medium">Sessions</h1>
+        <h1 className="text-lg font-medium">JWT Simple</h1>
         <nav>
           {authState.initialLoading ? (
             <div className="flex flex-row-reverse gap-4 items-center">

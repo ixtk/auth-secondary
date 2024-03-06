@@ -11,7 +11,7 @@ export const AuthContextProvider = ({ children }) => {
   })
 
   useEffect(() => {
-    const authController = new AbortController()
+    const controller = new AbortController()
 
     const checkStatus = async () => {
       // სატესტო დაყოვნებისთვის
@@ -19,10 +19,9 @@ export const AuthContextProvider = ({ children }) => {
 
       try {
         const response = await axiosInstance.get("/user/auth", {
-          signal: authController.signal
+          signal: controller.signal
         })
 
-        console.log("here 1", response.data.user)
         setAuthState({
           user: response.data.user,
           initialLoading: false
@@ -51,7 +50,7 @@ export const AuthContextProvider = ({ children }) => {
     checkStatus()
 
     return () => {
-      authController.abort()
+      controller.abort()
       axiosInterceptorsInstance.interceptors.response.eject(logoutInterceptor)
     }
   }, [])
