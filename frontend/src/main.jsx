@@ -8,8 +8,8 @@ import "./index.css"
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    {/* <SessionsApp /> */}
+    <SessionsApp />
     {/* <JwtSimpleApp /> */}
-    <JwtRefreshApp />
+    {/* <JwtRefreshApp /> */}
   </React.StrictMode>
 )

@@ -1,14 +1,8 @@
-import { Form, Formik } from "formik"
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
-import { ErrorMessage } from "formik"
-import { Button } from "@/components/ui/Button"
-import { Loader2 } from "lucide-react"
+import { Form, Formik, Field, ErrorMessage } from "formik"
 import { useContext } from "react"
 import { AuthContext } from "../AuthContext"
 import { axiosInstance } from "../axiosInstance"
 import { useNavigate } from "react-router-dom"
-import { FormStatus } from "../../components/FormStatus"
 
 export const RegisterPage = () => {
   const initialValues = {
@@ -38,88 +32,43 @@ export const RegisterPage = () => {
   }
 
   return (
-    <div className="max-w-lg mx-auto my-4">
+    <div className="form-page-container">
       <Formik initialValues={initialValues} onSubmit={registerUser}>
         {(formikProps) => {
           return (
-            <Form className="flex flex-col gap-4">
-              {formikProps.status && (
-                <FormStatus
-                  message={formikProps.status.message}
-                  errors={formikProps.status.errors}
-                />
-              )}
+            <Form className="form-container" autoComplete="off">
               <div>
-                <Label htmlFor="username" className="mb-4 block">
-                  Username
-                </Label>
-                <Input
-                  id="username"
-                  type="text"
-                  {...formikProps.getFieldProps("username")}
-                />
-                <ErrorMessage
-                  name="username"
-                  component="span"
-                  className="text-red-600"
-                />
+                <label htmlFor="username">Username</label>
+                <Field id="username" name="username" type="text" />
+                <ErrorMessage name="username" component="span" />
               </div>
               <div>
-                <Label htmlFor="email" className="mb-4 block">
-                  Email
-                </Label>
-                <Input
-                  id="email"
-                  type="text"
-                  {...formikProps.getFieldProps("email")}
-                />
-                <ErrorMessage
-                  name="email"
-                  component="span"
-                  className="text-red-600"
-                />
+                <label htmlFor="email">Email</label>
+                <Field id="email" name="email" type="text" />
+                <ErrorMessage name="email" component="span" />
               </div>
               <div>
-                <Label htmlFor="password" className="mb-4 block">
-                  Password
-                </Label>
-                <Input
-                  id="password"
-                  type="password"
-                  {...formikProps.getFieldProps("password")}
-                />
-                <ErrorMessage
-                  name="password"
-                  component="span"
-                  className="text-red-600"
-                />
+                <label htmlFor="password">Password</label>
+                <Field id="password" name="password" type="password" />
+                <ErrorMessage name="password" component="span" />
               </div>
+
               <div>
-                <Label htmlFor="confirmPassword" className="mb-4 block">
-                  Confirm password
-                </Label>
-                <Input
+                <label htmlFor="confirmPassword">Confirm password</label>
+                <Field
                   id="confirmPassword"
-                  type="password"
-                  {...formikProps.getFieldProps("confirmPassword")}
-                />
-                <ErrorMessage
                   name="confirmPassword"
-                  component="span"
-                  className="text-red-600"
+                  type="password"
                 />
+                <ErrorMessage name="confirmPassword" component="span" />
               </div>
-              <Button
+              <button
                 type="submit"
-                className="self-end"
+                className="register-btn"
                 disabled={formikProps.isSubmitting}
               >
-                {formikProps.isSubmitting ? (
-                  <Loader2 className="animate-spin" />
-                ) : (
-                  "Register"
-                )}
-              </Button>
+                {formikProps.isSubmitting ? "Loading..." : "Register"}
+              </button>
             </Form>
           )
         }}

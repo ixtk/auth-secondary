@@ -1,6 +1,6 @@
 export const HomePage = () => {
   return (
-    <div className="max-w-lg mx-auto my-4">
+    <div className="page-container">
       <h1>Home</h1>
     </div>
   )
