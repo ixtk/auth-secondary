@@ -20,8 +20,8 @@ app.listen(3000, async () => {
   console.log("Server running on port 3000")
 
   try {
-    await mongoose.connect("mongodb://127.0.0.1:27017/abc")
-    console.log("Connected to the database: abc")
+    await mongoose.connect("mongodb://127.0.0.1:27017/auth-demos")
+    console.log("Connected to the database: auth-demos")
   } catch (err) {
     console.error(err)
     process.exit(1)

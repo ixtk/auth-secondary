@@ -19,7 +19,7 @@ sessionRouter.use(
       saveUninitialized: false
     },
     store: MongoStore.create({
-      mongoUrl: "mongodb://127.0.0.1:27017/abc"
+      mongoUrl: "mongodb://127.0.0.1:27017/auth-demos"
     })
   })
 )
