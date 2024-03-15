@@ -51,7 +51,7 @@ export const AuthContextProvider = ({ children }) => {
           if (error.response?.status === 401) {
             try {
               await axiosInstance.post("/refresh")
-              await axiosInstance(originalRequest)
+              return axiosInstance(originalRequest)
             } catch (error) {
               window.location.href = "/login"
             }
